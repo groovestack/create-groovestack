@@ -11,7 +11,7 @@ require 'json'
 gem 'que', github: 'talysto/que', branch: 'master'
 gem 'omniauth-rails_csrf_protection'
 
-github 'talysto/groovestack-core', branch: 'main' do
+github 'talysto/groovestack-core', branch: 'latest' do
   gem 'core-base'
   gem 'core-config'
   gem 'core-auth'
