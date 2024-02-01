@@ -16,8 +16,5 @@
   "dependencies": {
     "semver": ">=7.5.4",
     "shelljs": ">=0.8.5"
-  },
-  "devDependencies": {
-    "yarpm": "^1.2.0"
   }
 }
