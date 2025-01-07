@@ -37,8 +37,8 @@ after_bundle do
   run "touch #{pkg_manager}.lock"
 
   js_dev_packages = %w[
-    ra-data-fakerest
-    ra-data-simple-rest
+    ra-data-fakerest@^4.16.8
+    ra-data-simple-rest@^4.16.8
   ]
 
   js_packages = %w[
@@ -48,8 +48,8 @@ after_bundle do
     @groovestack/auth
     @groovestack/jobs
     @moonlight-labs/ra-data-graphql-advanced
-    @mui/material@^5.15.20
-    @mui/icons-material@^5.15.20
+    @mui/material@^5.14.1
+    @mui/icons-material@^5.14.1
     @rails/actioncable
     graphql
     graphql-ruby-client
