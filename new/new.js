@@ -23,9 +23,10 @@ const rubyVersion = shell
   .exec("ruby -v", { silent: true })
   .stdout.replace(/[^0-9\.]/g, "")
   .substring(0, 5);
-const railsVersion = shell
-  .exec("rails -v", { silent: true })
-  .stdout.replace(/[^0-9\.]/g, "");
+// const railsVersion = shell
+//   .exec("rails -v", { silent: true })
+//   .stdout.replace(/[^0-9\.]/g, "");
+const railsVersion = '7.0.8'
 
 console.log("Node: ", nodeVersion);
 console.log("Ruby: ", rubyVersion);
@@ -34,7 +35,7 @@ console.log("Rails: ", railsVersion);
 let cmds = [
   {
     shellCmd: "exec",
-    args: `rails new ${argv[2]} -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install --skip-bootsnap`,
+    args: `rails _${railsVersion}_ new ${argv[2]} -d postgresql --skip-turbolinks --skip-hotwire --skip-jbuilder --skip-webpack-install --skip-bootsnap`,
   },
   {
     shellCmd: "cd",
@@ -87,15 +88,21 @@ if (!semver.gte(rubyVersion, "3.1.0")) {
   process.exit();
 }
 
-if (!semver.satisfies(railsVersion, ">=7.0.0 || <7.1.0")) {
+if (!railsVersion) {
   console.log(
     "Groovestack requires Rails 7+ to install successfully. We will attempt to add the correct version of Rails for you."
   );
 
   cmds.unshift({
     shellCmd: "exec",
-    args: `if ! gem list rails -i --silent; then echo "Installing rails..."; gem install rails -v 7.0.8; fi;`,
+    args: `if ! gem list rails -i --silent; then echo "Installing rails..."; gem install rails -v ${railsVersion}; fi;`,
   });
+} else if (!(semver.gte(railsVersion, "7.0.0") && semver.lt(railsVersion, "7.1.0"))) {
+  console.log(
+    "Groovestack requires Rails >=7.0.0 && <7.1.0 to install successfully. Update your global rails version accordingly before proceeding."
+  );
+
+  process.exit();
 }
 
 cmds.forEach((cmd) => {

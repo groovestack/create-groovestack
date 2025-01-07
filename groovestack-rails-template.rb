@@ -11,7 +11,7 @@ require 'json'
 gem 'que', github: 'talysto/que', branch: 'master'
 gem 'omniauth-rails_csrf_protection'
 
-github 'talysto/groovestack-core', branch: 'latest' do
+github 'talysto/groovestack-core', branch: 'main' do
   gem 'core-base'
   gem 'core-config'
   gem 'core-auth'
@@ -48,13 +48,14 @@ after_bundle do
     @groovestack/auth
     @groovestack/jobs
     @moonlight-labs/ra-data-graphql-advanced
-    @mui/material
+    @mui/material@^5.15.20
+    @mui/icons-material@^5.15.20
     @rails/actioncable
     graphql
     graphql-ruby-client
-    react
-    react-admin
-    react-dom
+    react@^18.3.1
+    react-admin@^4.16.17
+    react-dom@^18.3.1
   ]
 
   # vite installer

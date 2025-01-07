@@ -38,7 +38,7 @@ export const AdminApp = () => {
 
   if (appLoading) return <div>Loading...</div>
 
-  const renderResources = async (permissions: string[]) => permissions.includes('admin') ? AdminResources : NonAdminResources
+  const renderResources = async (permissions: string[]) => permissions?.includes('admin') ? AdminResources : NonAdminResources
   
   return (
     <Admin
